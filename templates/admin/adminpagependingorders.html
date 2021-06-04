@@ -1,0 +1,39 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}Admin Home{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        
+        <h3 class="text-center">Pending Orders</h3>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <span><a class="my-3 btn w-100 btn-dark" href="{% url 'adminpageallorders' %}">All Orders</a></span>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sr.No.</th>
+                            <th>Order Id</th>
+                            <th>Customer</th>
+                            <th>Ordered On</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in pending_orders %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td><a href="{% url 'adminpageorderdetails' order.id %}">#ORDER_{{order.id}}</a></td>
+                                <td>{{order.ordered_by}}</td>
+                                <td>{{order.created_at}}</td>
+                                <td>{{order.total}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

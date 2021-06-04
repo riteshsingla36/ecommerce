@@ -1,0 +1,32 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <th>Sr.No.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Query</th>
+                    </thead>
+                    <tbody>
+                        {% for query in queries %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{query.name}}</td>
+                                <td>{{query.email}}</td>
+                                <td>{{query.phone}}</td>
+                                <td>{{query.query}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

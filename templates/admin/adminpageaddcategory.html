@@ -1,0 +1,38 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}Add Category{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 my-5">
+                <form action="" method="POST" class="mx-auto" style="width: 50%; ">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Submit">
+                </form>    
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="text-center">Categories</h3>
+                <table class="table">
+                    <thead>
+                        <th>Sr. No.</th>
+                        <th>Title</th>
+                        <th>Slug</th>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{category.title}}</td>
+                                <td>{{category.slug}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

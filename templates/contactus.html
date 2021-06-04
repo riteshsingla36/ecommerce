@@ -1,0 +1,38 @@
+<style>
+    #id_name {
+        border-radius: 10px;
+    }
+    #id_email {
+        border-radius: 10px;
+    }
+    #id_phone {
+        border-radius: 10px;
+    }#id_query {
+        border-radius: 10px;
+    }
+</style>
+
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+        {% endfor %}
+
+    {% endif %}
+    <div class="container" style="margin: 50px auto; width: 50%;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-dark w-50">Submit</button>
+        </form>
+    </div>
+{% endblock %}

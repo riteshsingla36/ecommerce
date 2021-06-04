@@ -1,0 +1,87 @@
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="total-orders">
+                <div class="card-header">
+                    <h5 class="card-title"><a style="text-decoration: none; color: #fff;" href="{% url 'adminpageallorders' %}">Total Orders</a></h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_orders}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-delivered">
+                <div class="card-header">
+                    <h5 class="card-title">Orders Received</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{received}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Orders Processing</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{processing}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>    
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="total-orders">
+                <div class="card-header">
+                    <h5 class="card-title">Shipped</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{shipped}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-delivered">
+                <div class="card-header">
+                    <h5 class="card-title">Orders Completed</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{completed}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Orders Cancelled</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{cancelled}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>    

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="container text-center login-form">
+        <div class="row">
+            <div class="w-50 col-md-6 mx-auto text-center">
+                <h4 class="text-center">Login</h4><hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label for="">Email:</label>
+                    <input style="border-radius: 10px;" type="text" name="email" id="email">
+                    <br>
+                    <br>
+                    <label for="">Password:</label>
+                    <input style="border-radius: 10px;" type="password" name="password" id="password">
+                    <br>
+                    <br>
+                    <input class="btn w-50 btn-lg btn-block btn-success" type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+        {% for message in messages %}
+            <p class="text-center my-2" id="messages">{{message}}</p>
+        {% endfor %}
+        <p class="my-3"><span style="margin-right: 20px;">Don't A User</span> <a href="{% url 'registerpage' %}">Sign Up</a></p>
+        <p><span>Don't Remenber Your Password...</span><a href="{%url 'reset_password' %}">Forgot Password</a></p>
+    </div>
+
+		
+{% endblock %}

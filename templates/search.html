@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" >
+                <h3>Search Result For <span class="text-info">"{{request.GET.search}}"</span></h3>
+                <hr>
+                
+                {% for result in results %}
+                <div class="row my-4" >
+                    <div class="col-md-4">
+                        <a href="{% url 'product-detail' result.slug %}"><img src="{{result.image.url}}" class="img-fluid" style="object-fit: contain; height: 200px;"></a>
+                    </div>
+                    <div class="col-md-8">
+                        <h4><a href="{% url 'product-detail' result.slug %}">{{result.title}}</a></h4>
+                        <p>{{result.description|truncatewords:50}}</p>
+                        <a href="{% url 'addtocart' result.id %}" class=" btn btn-primary">Add To Cart</a>
+                        
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

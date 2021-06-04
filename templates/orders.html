@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>All Orders</h5>
+                <hr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Order Id</th>
+                            <th>Amount</th>
+                            <th>Ordered On</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td><a href="{% url 'orderdetail' order.id%}">#ORDER_{{order.id}}</a></td>
+                                <td>{{order.total}}</td>
+                                <td>{{order.created_at}}</td>
+                                <td>{{order.order_status}}</td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title%}Add To Cart{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Product has been successfully added to cart </h3>
+        <hr>
+        <h2>{{product.title}}</h2>
+        <img src="{{product.image.url}}" alt="">
+    </div>
+{% endblock %}

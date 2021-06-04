@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Detail{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h3>Order Detail</h3>
+                <p><span>Order ID:</span>#ORDER_{{order.id}}</p>
+                <p><span>Order Status:</span>{{order.order_status}}</p>
+                <p><span>Ordered on:</span>{{order.created_at}}</p>
+                <p><span>Customer Information:</span>By <b>{{order.ordered_by}}</b>, {{order.mobile}}, {{order.email}}</p>
+                <p><span>Shipping Information:</span>To {{order.shipping_address}}, {{order.city}}, {{order.state}}, {{order.pincode}}</p>
+                <h4>Order Details</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Image</th>
+                            <th>Item</th>
+                            <th>Rate</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pro in order.cart.cartproduct_set.all %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td><img width="50px" height="50px" src="{{pro.product.image.url}}" alt=""></td>
+                                <td><a href="{% url 'product-detail' pro.product.slug %}">{{pro.product}}</a></td>
+                                <td>{{pro.rate}}</td>
+                                <td>x{{pro.quantity}}</td>
+                                <td>{{pro.subtotal}}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th style="text-align: center;" colspan="5">Total:</th>
+                            <th>Rs. {{order.total}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
