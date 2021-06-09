@@ -12,6 +12,7 @@
                 <p><span>Ordered on:</span>{{order.created_at}}</p>
                 <p><span>Customer Information:</span>By <b>{{order.ordered_by}}</b>, {{order.mobile}}, {{order.email}}</p>
                 <p><span>Shipping Information:</span>To {{order.shipping_address}}, {{order.city}}, {{order.state}}, {{order.pincode}}</p>
+                <p><a href="{{order.payment_image.url}}"><img width="300px" height="300px" src="{{order.payment_image.url}}" alt=""></a></p>
                 <h4>Order Details</h4>
                 <table class="table">
                     <thead>

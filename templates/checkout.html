@@ -40,12 +40,17 @@
 
             <div class="col-md-6">
                 <h3>Checkout Form</h3>
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form.as_p}}
                     <input class="btn btn-lg btn-outline-info" type="submit" name="submit" value="Place Order">
                 </form>
             </div>
+            <div class="container">
+                <h3>Scan this code to make payment</h3>
+                <img src="{{payment.image.url}}" alt="">
+            </div>
+            
         </div>
     </div>
 {% endblock %}

@@ -64,7 +64,6 @@ ORDER_STATUS= (
         ('Order Completed', 'Order Completed'),
         ('Order Cancelled', 'Order Cancelled'),
     )
-    
 
 class Order(models.Model):
     
@@ -76,6 +75,7 @@ class Order(models.Model):
     city= models.CharField(max_length=200)
     state= models.CharField(max_length=200)
     pincode= models.IntegerField()
+    payment_image= models.ImageField(upload_to= 'payment_scrnsht', default= '')
     subtotal= models.PositiveIntegerField()
     discount= models.PositiveIntegerField()
     total= models.PositiveIntegerField()
@@ -97,4 +97,7 @@ class ContactUs(models.Model):
 
     class Meta:
         verbose_name_plural= 'contact us'
-    
+
+class Payment(models.Model):
+    name= models.CharField(max_length=255)
+    image= models.ImageField(upload_to='payment')

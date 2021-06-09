@@ -137,6 +137,7 @@ def emptycart(request):
 @login_required(login_url='loginpage')
 def checkout(request):
     cart_id = request.session.get('cart_id', None)
+    payment = Payment.objects.get(name= 'gpay')
     if cart_id:
         cart= Cart.objects.get(id= cart_id)
         if request.user.is_authenticated:
@@ -144,13 +145,16 @@ def checkout(request):
             cart.save()
         form= OrderForm()
         if request.method== 'POST':
-            form= OrderForm(request.POST)
+            form= OrderForm(request.POST, request.FILES)
             form.instance.cart= cart
             form.instance.subtotal= cart.total
             form.instance.discount= 0
-            form.instance.total= cart.total-form.instance.discount
+            form.instance.total= cart.total - form.instance.discount
             form.instance.order_status= 'Order Received'
             if form.is_valid():
+                name= form.cleaned_data.get('ordered_by')
+                img= form.cleaned_data.get('payment_image')
+                print(name, img)
                 form.save()
                 del request.session['cart_id']
                 return redirect('home')    
@@ -158,7 +162,7 @@ def checkout(request):
         cart= None
         return redirect('home')
     
-    context = {'cart': cart, 'form': form}
+    context = {'cart': cart, 'form': form, 'payment': payment}
     return render(request, 'checkout.html', context)
 
 @unauthoriseduser
@@ -212,7 +216,7 @@ def registerpage(request):
             customer.save()
             send_mail(
                 'Welcome To Eshop',
-                'Thankyou for becoming a member of our team'
+                'Thankyou for becoming a member of our team',
                 'rsjkq9@gmail.com',
                 [email],
                 fail_silently=False,

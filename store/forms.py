@@ -16,7 +16,7 @@ class CustomerForm(ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model= Order
-        fields= ['ordered_by', 'mobile', 'email','shipping_address', 'city', 'state', 'pincode']
+        fields= ['ordered_by', 'mobile', 'email','shipping_address', 'city', 'state', 'pincode', 'payment_image']
 
 class CreateProductForm(forms.ModelForm):
     class Meta:
