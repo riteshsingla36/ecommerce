@@ -64,6 +64,7 @@ def addtocart(request, pk):
         if request.user.is_authenticated:
             cart.customer= request.user.customer
             cart.save()
+            
         # check if product already exists in cart or not
         is_this_product_in_cart= cart.cartproduct_set.filter(product=product_obj)
         
@@ -74,10 +75,12 @@ def addtocart(request, pk):
             cartproduct.save()
             cart.total += product_obj.selling_price
             cart.save()
+            
         else:
             cartproduct= CartProduct.objects.create(cart=cart, product=product_obj, rate=product_obj.selling_price, quantity=1, subtotal= product_obj.selling_price)
             cart.total+= product_obj.selling_price
             cart.save()
+            
 
     else:
         cart= Cart.objects.create(total=0)
@@ -86,8 +89,9 @@ def addtocart(request, pk):
         cart.total+= product_obj.selling_price
         cart.save()
         
+        
     context= {}
-    return redirect('/')
+    return redirect('/', context)
 
 def cart(request):
     cart_id= request.session.get('cart_id', None)
@@ -152,11 +156,10 @@ def checkout(request):
             form.instance.total= cart.total - form.instance.discount
             form.instance.order_status= 'Order Received'
             if form.is_valid():
-                name= form.cleaned_data.get('ordered_by')
-                img= form.cleaned_data.get('payment_image')
-                print(name, img)
                 form.save()
+                error_message= 'Order placed'
                 del request.session['cart_id']
+                context= {'error_message': error_message}
                 return redirect('home')    
     else:
         cart= None
